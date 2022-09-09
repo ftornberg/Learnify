@@ -1,7 +1,12 @@
 import React from "react";
+import Courses from "../component/Courses";
 
 const Homepage = () => {
-    return <h1>HOMEPAGE</h1>
-}
+  return (
+    <div>
+      <Courses />
+    </div>
+  );
+};
 
 export default Homepage;
