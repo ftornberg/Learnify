@@ -14,6 +14,7 @@ using Microsoft.OpenApi.Models;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Entity.Interfaces;
+using API.Helpers;
 
 namespace API
 {
@@ -31,6 +32,7 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddAutoMapper(typeof(MappingProfile));
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddControllers();
             services.AddDbContext<StoreContext>(x => x.UseSqlite(_config.GetConnectionString("DefaultConnection")));
