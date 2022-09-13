@@ -32,6 +32,7 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddControllers();
