@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using Entity.Interfaces;
 
 namespace API
 {
@@ -29,8 +30,8 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<ICourseRepository, CourseRepository>();
             services.AddControllers();
-            
             services.AddDbContext<StoreContext>(x => x.UseSqlite(_config.GetConnectionString("DefaultConnection")));
 
             //Adds CORS service, for development.  
