@@ -25,7 +25,7 @@ namespace API.Controllers
         
         [HttpGet("serverError")]
 
-        public ActionResult  ServerErrorMethod()
+        public ActionResult ServerErrorMethod()
         {
             var category = _context.Categories.Find(42);
 
