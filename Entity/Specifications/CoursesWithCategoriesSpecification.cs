@@ -6,7 +6,8 @@ namespace Entity.Specifications
     public class CoursesWithCategoriesSpecification : BaseSpecification<Course>
     {
         public CoursesWithCategoriesSpecification(CourseParams courseParams) : base(x => 
-        !courseParams.CategoryId.HasValue || x.CategoryId == courseParams.CategoryId
+        (string.IsNullOrEmpty(courseParams.Search) || x.Title.ToLower().Contains(courseParams.Search)) && 
+        (!courseParams.CategoryId.HasValue || x.CategoryId == courseParams.CategoryId)
         )
         {
             IncludeMethod(x => x.Category);
