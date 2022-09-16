@@ -8,6 +8,7 @@ namespace Entity.Specifications
         public CategoriesWithCoursesSpecifications(int id) : base(x => x.Id == id)
         {
             IncludeMethod(c => c.Courses);
+            SortMethod(x => x.Id);
         }
     }
 }
