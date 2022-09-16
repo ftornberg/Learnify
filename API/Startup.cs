@@ -39,8 +39,12 @@ namespace API
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddControllers();
 
-            services.AddDbContext<StoreContext>(x => x.UseSqlite(_config.GetConnectionString("DefaultConnection")));
-
+            services.AddDbContext<StoreContext>(x =>
+            {
+                x.UseSqlite(_config.GetConnectionString("DefaultConnection"),
+                x => x.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
+            });
+            
             //Adds CORS service, for development.  
             services.AddCors(opt => 
             {
