@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    public class ErrorsControllers : BaseController
+    public class ErrorsController : BaseController
     {
         private readonly StoreContext _context;
 
-        public ErrorsControllers(StoreContext context)
+        public ErrorsController(StoreContext context)
         {
             _context = context;
         }
@@ -28,8 +28,6 @@ namespace API.Controllers
         public ActionResult  ServerErrorMethod()
         {
             var category = _context.Categories.Find(42);
-
-            if(category == null) return NotFound();
 
             return Ok(category.ToString());
         }
