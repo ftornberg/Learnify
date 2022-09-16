@@ -11,7 +11,7 @@ namespace API.ErrorResponse
         public int StatusCode { get; set; }
         public string ErrorMessage { get; set; }
 
-        public string DefaultErrorMessage(int statusCode)
+        private string DefaultErrorMessage(int statusCode)
         {
             return statusCode switch
             {
