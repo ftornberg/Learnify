@@ -22,5 +22,30 @@ namespace API.Controllers
 
             return Ok();
         }
+        
+        [HttpGet("serverError")]
+
+        public ActionResult  ServerErrorMethod()
+        {
+            var category = _context.Categories.Find(42);
+
+            if(category == null) return NotFound();
+
+            return Ok(category.ToString());
+        }
+        
+        [HttpGet("badRequest")]
+
+        public ActionResult badRequestMethod()
+        {
+            return BadRequest();
+        }
+        
+        [HttpGet("badRequest/{id}")]
+
+        public ActionResult badIdMethod(int id)
+        {
+            return Ok();
+        }
     }
 }
