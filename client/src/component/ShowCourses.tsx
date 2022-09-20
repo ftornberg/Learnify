@@ -2,12 +2,13 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import * as FaIcons from "react-icons/fa";
 import { Card, Col } from "antd";
 import { Course } from "../models/course";
+import { Link } from "react-router-dom";
 
-interface Props{
-    course: Course
+interface Props {
+  course: Course;
 }
 
-const ShowCourses = ({course}: Props) => {
+const ShowCourses = ({ course }: Props) => {
   const [spanVal, setSpanVal] = useState<number>();
 
   const checkWidth = (): void => {
@@ -24,11 +25,11 @@ const ShowCourses = ({course}: Props) => {
     window.addEventListener("resize", checkWidth);
     return () => window.addEventListener("resize", checkWidth);
   }, []);
-useEffect(() => {
+  useEffect(() => {
     checkWidth();
-}, []);  
+  }, []);
 
-const showStars = (rating: number): [] => {
+  const showStars = (rating: number): [] => {
     const options: any = [];
     for (let i = 1; i < rating; i++) {
       options.push(<FaIcons.FaStar key={i} />);
@@ -41,18 +42,20 @@ const showStars = (rating: number): [] => {
   return (
     <>
       <Col className="gutter-row" span={spanVal}>
-        <Card
-          hoverable
-          cover={<img width="100%" alt="course-cover" src={course.image} />}
-        >
-          <div className="course__title">{course.title}</div>
-          <div className="course__instructor">{course.instructor}</div>
-          <div className="course__rating">
-            {course.rating}
-            <span>{showStars(course.rating)}</span>
-          </div>
-          <div className="course__price">{course.price}</div>
-        </Card>
+        <Link to={`/course/${course.id}`}>
+          <Card
+            hoverable
+            cover={<img width="100%" alt="course-cover" src={course.image} />}
+          >
+            <div className="course__title">{course.title}</div>
+            <div className="course__instructor">{course.instructor}</div>
+            <div className="course__rating">
+              {course.rating}
+              <span>{showStars(course.rating)}</span>
+            </div>
+            <div className="course__price">{course.price}</div>
+          </Card>
+        </Link>
       </Col>
     </>
   );
