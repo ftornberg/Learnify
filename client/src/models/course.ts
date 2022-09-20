@@ -13,4 +13,5 @@ export interface Course {
     subTitle: string;
     Learnings: string[] | [];
     Requirements: string[] | [];
+    lastUpdated: Date; 
 }
