@@ -39,7 +39,7 @@ namespace Infrastructure
                     }
                     await context.SaveChangesAsync();
                 }
-                
+
                 if (!context.Learnings.Any())
                 {
                     var learningData = File.ReadAllText("../Infrastructure/SeedData/learnings.json");
@@ -51,7 +51,7 @@ namespace Infrastructure
                     }
                     await context.SaveChangesAsync();
                 }
-                
+
                 if (!context.Requirements.Any())
                 {
                     var requirementData = File.ReadAllText("../Infrastructure/SeedData/requirements.json");
