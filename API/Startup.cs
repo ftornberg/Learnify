@@ -23,7 +23,7 @@ namespace API
     public class Startup
     {
         private readonly IConfiguration _config;
-  
+
         public Startup(IConfiguration config)
         {
             _config = config;
@@ -44,13 +44,14 @@ namespace API
                 x.UseSqlite(_config.GetConnectionString("DefaultConnection"),
                 x => x.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
             });
-            
+
             //Adds CORS service, for development.  
-            services.AddCors(opt => 
+            services.AddCors(opt =>
             {
-                opt.AddPolicy("CorsPolicy", policy => 
+                opt.AddPolicy("CorsPolicy", policy =>
                 {
-                    policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
+                    policy.AllowAnyHeader().AllowAnyMethod().AllowCredentials()
+                    .WithOrigins("http://localhost:3000");
                 });
             });
 
@@ -58,16 +59,16 @@ namespace API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
             });
-            
-            services.Configure<ApiBehaviorOptions>(options => 
+
+            services.Configure<ApiBehaviorOptions>(options =>
             {
-                options.InvalidModelStateResponseFactory = actionContext => 
+                options.InvalidModelStateResponseFactory = actionContext =>
                 {
                     var errors = actionContext.ModelState
                     .Where(e => e.Value.Errors.Count > 0)
                     .SelectMany(x => x.Value.Errors)
                     .Select(x => x.ErrorMessage).ToArray();
-                
+
                     var errorResponse = new ApiValidationErrorResponse
                     {
                         Errors = errors
@@ -89,7 +90,7 @@ namespace API
             }
 
             app.UseStatusCodePagesWithReExecute("/redirect/{0}");
-            
+
             // app.UseHttpsRedirection();
 
             app.UseRouting();
