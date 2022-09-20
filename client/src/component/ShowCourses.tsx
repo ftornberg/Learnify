@@ -54,7 +54,6 @@ const showStars = (rating: number): [] => {
           <div className="course__price">{course.price}</div>
         </Card>
       </Col>
-      );
     </>
   );
 };
