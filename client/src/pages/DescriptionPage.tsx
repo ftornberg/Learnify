@@ -72,6 +72,7 @@ const DescriptionPage = () => {
             <div className="description-page__info__level">
               Category
               <span className="description-page__info__level--name">{course?.level}</span>
+              // @09:24 M07-L07.07
             </div>
           </div>
         </div>
