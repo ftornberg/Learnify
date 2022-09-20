@@ -22,7 +22,7 @@ namespace API.Controllers
 
         public async Task<ActionResult<Basket>> GetBasket()
         {
-            var basket = ExtractBasket();
+            var basket = await ExtractBasket();
 
             if (basket == null) return NotFound(new ApiResponse(404));
 
