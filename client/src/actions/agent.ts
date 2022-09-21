@@ -7,6 +7,8 @@ axios.defaults.baseURL = 'http://localhost:5000/api';
 
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
+axios.defaults.withCredentials = true;
+
 const requests = {
 	get: <T>(url: string) => axios.get<T>(url).then(responseBody),
 	post: <T>(url: string, body: {}) =>
@@ -25,9 +27,18 @@ const Categories = {
 	getCategory: (id: number) => requests.get<Category>(`/categories/${id}`),
 };
 
+const Basket = {
+	get: () => requests.get('basket'),
+	addItem: (courseId: string) =>
+		requests.post(`basket?courseId=${courseId}`, {}),
+	removeItem: (courseId: string) =>
+		requests.delete(`basket?courseId=${courseId}`),
+};
+
 const agent = {
 	Courses,
 	Categories,
+	Basket,
 };
 
 export default agent;
