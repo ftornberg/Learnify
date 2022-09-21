@@ -29,7 +29,7 @@ export function StoreProvider({ children }: PropsWithChildren<any>) {
 
 		const itemIndex = items.findIndex((i) => i.courseId === courseId);
 
-		if (itemIndex > 0) {
+		if (itemIndex >= 0) {
 			items.splice(itemIndex, 1);
 			setBasket((prevState) => {
 				return { ...prevState!, items };
