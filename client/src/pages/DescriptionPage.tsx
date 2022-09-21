@@ -39,6 +39,7 @@ const DescriptionPage = () => {
 						<div className="description-page__header__title">
 							{course?.title}
 						</div>
+
 						<div className="description-page__header__details">
 							<div className="description-page__header__details__author">
 								Created by
@@ -46,12 +47,14 @@ const DescriptionPage = () => {
 									{course?.instructor}
 								</span>
 							</div>
+
 							<div className="description-page__header__details__language">
 								Language
 								<span className="description-page__header__details__language--name">
 									{course?.language}
 								</span>
 							</div>
+
 							<div className="description-page__header__details__updated">
 								Last updated
 								<span className="description-page__header__details__updated--date">
@@ -83,6 +86,7 @@ const DescriptionPage = () => {
 							</span>
 						</div>
 					</div>
+
 					<div className="description-page__about">
 						<div className="description-page__about__title">
 							More about Course
@@ -91,6 +95,7 @@ const DescriptionPage = () => {
 							{course?.subTitle}
 						</div>
 					</div>
+
 					<div className="description-page__description">
 						<div className="description-page__description__title">
 							Description
@@ -100,6 +105,7 @@ const DescriptionPage = () => {
 						</div>
 					</div>
 				</div>
+
 				<div className="description-page__sidebar">
 					<div className="description-page__sidebar__box">
 						<div className="description-page__sidebar__box__video">
@@ -110,6 +116,7 @@ const DescriptionPage = () => {
 								height="100%"
 							/>
 						</div>
+
 						<div className="description-page__sidebar__box__price">
 							<span className="description-page__sidebar__box__price__real">
 								{`$${course?.price}`}
@@ -121,10 +128,12 @@ const DescriptionPage = () => {
 								{course && `${Math.floor(100 - course!.price)}% off`}
 							</span>
 						</div>
+
 						<div className="description-page__sidebar__box__learning">
 							<div className="description-page__sidebar__box__learning__title">
 								What will you learn?
 							</div>
+
 							<div className="description-page__sidebar__box__learning__content">
 								<ul className="description-page__sidebar__box__learning__content__list">
 									{course?.learnings.map(
@@ -145,12 +154,14 @@ const DescriptionPage = () => {
 								</ul>
 							</div>
 						</div>
+
 						<div className="description-page__sidebar__box__button">
 							<div className="description-page__sidebar__box__button--text">
 								Book now
 							</div>
 						</div>
 					</div>
+
 					<div className="description-page__sidebar__body">
 						<div className="description-page__sidebar__body__requirements">
 							<div className="description-page__sidebar__body__requirements__title">
