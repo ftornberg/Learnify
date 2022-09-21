@@ -19,9 +19,9 @@ function App() {
 			<Switch>
 				<Route exact path="/" component={Homepage} />
 				<Route exact path="/category/:id" component={CategoryPage} />
-				<Route exact path="/basket" component={BasketPage} />
 				<Route exact path="/course/:id" component={DescriptionPage} />
 				<Route exact path="/login" component={LoginPage} />
+				<Route exact path="/basket" component={BasketPage} />
 				<Route exact path="/detail" component={DetailPage} />
 			</Switch>
 		</>
