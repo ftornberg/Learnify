@@ -131,7 +131,7 @@ const DescriptionPage = () => {
 
 						<div className="description-page__sidebar__box__learning">
 							<div className="description-page__sidebar__box__learning__title">
-								What will you learn?
+								What you'll learn?
 							</div>
 
 							<div className="description-page__sidebar__box__learning__content">
@@ -165,7 +165,7 @@ const DescriptionPage = () => {
 					<div className="description-page__sidebar__body">
 						<div className="description-page__sidebar__body__requirements">
 							<div className="description-page__sidebar__body__requirements__title">
-								Requirements for the course
+								Requirements for attending the course
 							</div>
 							<div className="description-page__sidebar__body__requirements__content">
 								<ul className="description-page__sidebar__body__requirements__content__list">
