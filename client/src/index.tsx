@@ -1,16 +1,18 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter as Router } from "react-router-dom";
-import "./sass/main.scss";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+import './sass/main.scss';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import { StoreProvider } from './context/StoreContext';
 
 ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
-  document.getElementById("root")
+	<Router>
+		<StoreProvider>
+			<App />
+		</StoreProvider>
+	</Router>,
+	document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
