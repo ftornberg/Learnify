@@ -1,18 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { Table } from 'antd';
 import agent from '../actions/agent';
-import { Basket } from '../models/basket';
+import { Basket, CourseItem } from '../models/basket';
 import * as FaIcons from 'react-icons/fa';
-import { Course } from '../models/course';
 
 const BasketPage = () => {
-	const [items, setItems] = useState<Basket>();
+	const [items, setItems] = useState<Basket | null>();
 
 	useEffect(() => {
 		agent.Baskets.get().then((response) => {
-			setItems(response);
+			newData(response);
 		});
 	}, []);
+
+	const newData = (items: Basket | null) => {
+		items?.items.map((item: CourseItem, index: number) =>
+			Object.assign(item, { key: index })
+		);
+
+		setItems(items);
+	};
+
+	const removeItem = (courseId: string) => {
+		agent.Baskets.removeItem(courseId).catch((error) => {
+			console.log(error);
+		});
+	};
 
 	const columns = [
 		{
@@ -41,8 +54,8 @@ const BasketPage = () => {
 		{
 			title: 'Action',
 			key: 'action',
-			render: (item: Course) => (
-				<div>
+			render: (item: CourseItem) => (
+				<div onClick={() => removeItem(item.courseId)}>
 					<FaIcons.FaTrash />
 				</div>
 			),
