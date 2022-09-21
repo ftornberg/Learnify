@@ -1,5 +1,4 @@
 import { PropsWithChildren, createContext, useContext, useState } from 'react';
-import { setConstantValue } from 'typescript';
 import { Basket } from '../models/basket';
 
 interface StoreContextValue {
