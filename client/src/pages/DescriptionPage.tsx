@@ -2,10 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Course, Learning, Requirement } from '../models/course';
 import { useParams } from 'react-router';
 import agent from '../actions/agent';
+import { useStoreContext } from '../context/StoreContext';
+import { Link } from 'react-router-dom';
 
 const DescriptionPage = () => {
 	const [course, setCourse] = useState<Course>();
 	const { id } = useParams<{ id: string }>();
+
+	const { setBasket, basket } = useStoreContext();
 
 	useEffect(() => {
 		agent.Courses.getById(id).then((response) => {
@@ -29,6 +33,12 @@ const DescriptionPage = () => {
 		}
 		date = dd + '/' + mm + '/' + yyyy;
 		return date.toString();
+	};
+
+	const addToCart = (courseId: string) => {
+		agent.Baskets.addItem(courseId)
+			.then((response) => setBasket(response))
+			.catch((error) => console.log(error));
 	};
 
 	return (
@@ -156,6 +166,22 @@ const DescriptionPage = () => {
 						</div>
 
 						<div className="description-page__sidebar__box__button">
+							{basket?.items.find((item) => item.courseId === course?.id) !==
+							undefined ? (
+								<Link
+									className="description-page__sidebar__box__button--cart"
+									to="/basket"
+								>
+									Go to cart
+								</Link>
+							) : (
+								<div
+									onClick={() => addToCart(course!.id)}
+									className="description-page__sidebar__box__button--cart"
+								>
+									Add to cart
+								</div>
+							)}
 							<div className="description-page__sidebar__box__button--text">
 								Book now
 							</div>
