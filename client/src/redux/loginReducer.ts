@@ -4,10 +4,12 @@ export interface LoginState {
 	visits: number;
 }
 
+//Action Reducer
 export const initialState: LoginState = {
 	visits: 1,
 };
 
+//Action Type
 export function increment(amount = 1) {
 	return {
 		type: UPDATE_VISIT,
@@ -15,6 +17,7 @@ export function increment(amount = 1) {
 	};
 }
 
+//Reducer
 export default function loginReducer(state = initialState, action: any) {
 	switch (action.type) {
 		case UPDATE_VISIT:
