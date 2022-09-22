@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { increment } from '../redux/slice/loginSlice';
 import { useAppDispatch, useAppSelector } from '../redux/store/configureStore';
 
