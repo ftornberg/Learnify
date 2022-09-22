@@ -1,13 +1,6 @@
+import { initialState } from './slice/loginSlice';
+
 export const UPDATE_VISIT = 'UPDATE_VISIT';
-
-export interface LoginState {
-	visits: number;
-}
-
-//Action Reducer
-export const initialState: LoginState = {
-	visits: 1,
-};
 
 //Action Type
 export function increment(amount = 1) {
