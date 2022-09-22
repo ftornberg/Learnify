@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import * as FaIcons from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Logo from '../assets/logo.png';
-import { useStoreContext } from '../context/StoreContext';
+import { useAppSelector } from '../redux/store/configureStore';
 
 const Navigation = () => {
 	const [sidebar, setSidebar] = useState(false);
 
 	const showSidebar = () => setSidebar(!sidebar);
-	const { basket } = useStoreContext();
+	const { basket } = useAppSelector((state) => state.basket);
 	const basketCount = basket?.items.length;
 
 	return (
