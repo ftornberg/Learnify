@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
+import { Card, Col, Radio, Row } from 'antd';
 import { Course } from '../models/course';
 import ShowCourses from '../component/ShowCourses';
-import { Card, Col, Pagination, Radio, Row } from 'antd';
+import { Pagination } from 'antd';
 import { useAppDispatch, useAppSelector } from '../redux/store/configureStore';
 import {
 	coursesSelector,
@@ -14,25 +15,16 @@ import { Category } from '../models/category';
 
 const sortOptions = [
 	{ value: 'title', label: 'Alphabetical' },
-	{ value: 'priceDecending', label: 'Price - High to Low' },
-	{ value: 'priceAscending', label: 'Price - Low to High' },
+	{ value: 'priceDescending', label: 'Price - High to low' },
+	{ value: 'priceAscending', label: 'Price - Low to high' },
 ];
 
 const Homepage = () => {
 	const courses = useAppSelector(coursesSelector.selectAll);
 	const dispatch = useAppDispatch();
-	const { coursesLoaded, courseParams, pagination } = useAppSelector(
+	const { coursesLoaded, pagination, courseParams } = useAppSelector(
 		(state) => state.course
 	);
-
-	useEffect(() => {
-		if (!coursesLoaded) dispatch(getCoursesAsync());
-	}, [coursesLoaded, dispatch]);
-
-	function onChange(pageNumber: number) {
-		dispatch(setPageNumber({ pageIndex: pageNumber }));
-	}
-
 	const categories = useAppSelector(categoriesSelector.selectAll);
 
 	const getCategories = () => {
@@ -43,11 +35,19 @@ const Homepage = () => {
 		return catArray;
 	};
 
+	useEffect(() => {
+		if (!coursesLoaded) dispatch(getCoursesAsync());
+	}, [coursesLoaded, dispatch]);
+
+	function onChange(pageNumber: number) {
+		dispatch(setPageNumber({ pageIndex: pageNumber }));
+	}
+
 	return (
 		<div className="course">
 			<div className="course__header">
-				<h1>What to learn next?</h1>
-				<h2>New Courses Just For You...</h2>
+				<h1>What to learn Next?</h1>
+				<h2>New Courses picked just for you...</h2>
 			</div>
 			<Row gutter={[24, 32]}>
 				<Col span={4}>
@@ -64,9 +64,9 @@ const Homepage = () => {
 						<Radio.Group
 							options={getCategories()}
 							value={courseParams.category}
-							onChange={(e) =>
-								dispatch(setCourseParams({ category: e.target.value }))
-							}
+							onChange={(e) => {
+								dispatch(setCourseParams({ category: e.target.value }));
+							}}
 						/>
 					</Card>
 				</Col>
