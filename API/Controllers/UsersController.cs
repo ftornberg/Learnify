@@ -2,8 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Dto;
+using API.ErrorResponse;
 using Entity;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
@@ -15,7 +18,40 @@ namespace API.Controllers
             _userManager = userManager;
 
         }
+
+        [HttpPost("login")]
+
+        public async Task<ActionResult<User>> Login(LoginDto loginDto)
+        {
+            var user = await _userManager.FindByEmailAsync(loginDto.Email);
+
+            if (user == null || !await _userManager.CheckPasswordAsync(user, loginDto.Password))
+            {
+                return Unauthorized(new ApiResponse(401));
+            }
+
+            return user;
+        }
+
+        [HttpPost("register")]
+
+        public async Task<ActionResult<User>> Register(RegisterDto registerDto)
+        {
+            var user = new User { UserName = registerDto.Username, Email = registerDto.Email };
+
+            var result = await _userManager.CreateAsync(user, registerDto.Password);
+
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(error.Code, error.Description);
+                }
+                return ValidationProblem();
+            }
+            await _userManager.AddToRoleAsync(user, "Student");
+
+            return user;
+        }
     }
 }
-
-// uppgift 10.3, video 10.4 TIMESTAMP 00:53
