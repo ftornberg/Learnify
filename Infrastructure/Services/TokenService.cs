@@ -23,7 +23,7 @@ namespace Infrastructure.Services
 
         }
 
-        public async Task<string> GerenateToken(User user)
+        public async Task<string> GenerateToken(User user)
         {
             var claims = new List<Claim>
             {
@@ -37,7 +37,7 @@ namespace Infrastructure.Services
                 claims.Add(new Claim(ClaimTypes.Role, role));
             }
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["TokenKey"]));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWT:TokenKey"]));
 
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512);
 
