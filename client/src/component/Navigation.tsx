@@ -36,7 +36,14 @@ const Navigation = () => {
 									<FaIcons.FaChevronLeft />
 								</li>
 								<li className="nav-menu-items__header">Navigation</li>
-								<li>My Courses</li>
+								<Link to="/">
+									{' '}
+									<li>Home</li>{' '}
+								</Link>
+								<Link to="/login">
+									{' '}
+									<li>Login</li>{' '}
+								</Link>
 							</ul>
 						</nav>
 					</div>
@@ -46,6 +53,9 @@ const Navigation = () => {
 					<ul className="nav__left__list">
 						<Link to="/">
 							<div className="nav__left__list__item">Home</div>
+						</Link>
+						<Link to="/login">
+							<div className="nav__left__list__item">Login</div>
 						</Link>
 					</ul>
 				</div>
