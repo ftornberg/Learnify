@@ -78,12 +78,12 @@ const Homepage = () => {
 							})}
 					</Row>
 					<div className="pagination">
-						{Pagination && (
+						{pagination && (
 							<Pagination
 								defaultCurrent={pagination?.pageIndex}
 								total={pagination?.totalCount}
-								pageSize={pagination?.pageSize}
 								onChange={onChange}
+								pageSize={pagination?.pageSize}
 							/>
 						)}
 					</div>
