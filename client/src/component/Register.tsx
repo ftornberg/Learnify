@@ -2,6 +2,7 @@ import { Button, Card, Form, Input, notification, Typography } from 'antd';
 import { Content } from 'antd/lib/layout/layout';
 import { ChangeEvent, SyntheticEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { Register } from '../models/user';
 import { registerUser } from '../redux/slice/userSlice';
 import { AppDispatch } from '../redux/store/configureStore';
@@ -33,6 +34,8 @@ const RegisterComponent = ({ toggleRegister }: Props) => {
 		form.resetFields();
 	};
 
+	const history = useHistory();
+
 	const submitUser = async (e: SyntheticEvent) => {
 		e.preventDefault();
 		try {
@@ -42,6 +45,7 @@ const RegisterComponent = ({ toggleRegister }: Props) => {
 				username.length >= 5
 			) {
 				await dispatch(registerUser(values));
+				history.push('/profile');
 			}
 			resetForm();
 		} catch (err: any) {

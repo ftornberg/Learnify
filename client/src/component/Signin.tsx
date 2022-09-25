@@ -2,6 +2,7 @@ import { Button, Card, Form, Input, notification, Typography } from 'antd';
 import { Content } from 'antd/lib/layout/layout';
 import { ChangeEvent, SyntheticEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { Login } from '../models/user';
 import { signInUser } from '../redux/slice/userSlice';
 import { AppDispatch } from '../redux/store/configureStore';
@@ -32,11 +33,14 @@ const Signin = ({ toggleRegister }: Props) => {
 		form.resetFields();
 	};
 
+	const history = useHistory();
+
 	const submitUser = async (e: SyntheticEvent) => {
 		e.preventDefault();
 		try {
 			if (email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/) && password.length >= 6) {
 				await dispatch(signInUser(values));
+				history.push('/profile');
 			}
 			resetForm();
 		} catch (err: any) {
