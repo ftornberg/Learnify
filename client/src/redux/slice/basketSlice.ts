@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { isatty } from 'tty';
 import agent from '../../actions/agent';
 import { Basket } from '../../models/basket';
 
