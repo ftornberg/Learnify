@@ -3,26 +3,26 @@ import { Route, Switch } from 'react-router-dom';
 import './sass/main.scss';
 import 'antd/dist/antd.min.css';
 import Homepage from './pages/Homepage';
+import Dashboard from './pages/Dashboard';
 import LoginPage from './pages/LoginPage';
 import DetailPage from './pages/DetailPage';
 import BasketPage from './pages/BasketPage';
+import CheckoutPage from './pages/CheckoutPage';
 import Navigation from './component/Navigation';
 import Categories from './component/Categories';
 import CategoryPage from './pages/CategoryPage';
-import DescriptionPage from './pages/DescriptionPage';
-import { useAppDispatch } from './redux/store/configureStore';
-import { fetchBasketAsync } from './redux/slice/basketSlice';
-import Dashboard from './pages/Dashboard';
-import { getUser } from './redux/slice/userSlice';
 import PrivateRoute from './component/PrivateRoute';
-import CheckoutPage from './pages/CheckoutPage';
+import DescriptionPage from './pages/DescriptionPage';
+import { fetchCurrentUser } from './redux/slice/userSlice';
+import { fetchBasketAsync } from './redux/slice/basketSlice';
+import { useAppDispatch } from './redux/store/configureStore';
 
 function App() {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
 		dispatch(fetchBasketAsync());
-		dispatch(getUser());
+		dispatch(fetchCurrentUser());
 	}, [dispatch]);
 
 	return (
