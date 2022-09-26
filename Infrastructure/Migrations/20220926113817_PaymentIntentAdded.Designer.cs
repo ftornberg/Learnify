@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20220923143410_Identity")]
-    partial class Identity
+    [Migration("20220926113817_PaymentIntentAdded")]
+    partial class PaymentIntentAdded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,6 +25,12 @@ namespace Infrastructure.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ClientId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ClientSecret")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PaymentIntentId")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -253,15 +259,15 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ddb93770-a98e-47db-a1f1-860049456376",
-                            ConcurrencyStamp = "bad27bb2-010f-4eef-99cf-71f307f8f5ca",
+                            Id = "ccb01f94-597e-47a9-8cc9-868b05acb22f",
+                            ConcurrencyStamp = "f1371661-20aa-47d0-9a8b-44b4633020b9",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         },
                         new
                         {
-                            Id = "49ff3361-4808-471c-8fe9-cfc6006227a7",
-                            ConcurrencyStamp = "f4a0c858-e78c-450d-abde-f7f511402b36",
+                            Id = "9f25fb9b-2ce1-41a9-a7e6-bf42d9febb7e",
+                            ConcurrencyStamp = "445a3b19-9ef6-4fac-8dc9-e59871bd7332",
                             Name = "Instructor",
                             NormalizedName = "INSTRUCTOR"
                         });

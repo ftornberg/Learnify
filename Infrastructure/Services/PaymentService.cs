@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,15 +9,16 @@ namespace Infrastructure.Services
 {
     public class PaymentService
     {
-        private readonly IConfiguration _configuration;
-        public PaymentService(IConfiguration configuration)
+        private readonly IConfiguration _config;
+        public PaymentService(IConfiguration config)
         {
-            _configuration = configuration;
+            _config = config;
+
         }
 
         public async Task<PaymentIntent> PaymentIntentAsync(Basket basket)
         {
-            StripeConfiguration.ApiKey = _configuration["Stripe:ClientSecret"];
+            StripeConfiguration.ApiKey = _config["Stripe:ClientSecret"];
 
             var service = new PaymentIntentService();
 
@@ -38,6 +38,7 @@ namespace Infrastructure.Services
                 };
 
                 intent = await service.CreateAsync(options);
+
             }
             else
             {
