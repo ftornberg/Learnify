@@ -20,5 +20,7 @@ namespace Entity
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         public DateTime LastUpdated { get; set; } = DateTime.Now;
+        public ICollection<UserCourse> UserCourses { get; set; }
+
     }
 }
