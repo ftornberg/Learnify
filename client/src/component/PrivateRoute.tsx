@@ -5,7 +5,7 @@ import {
 	RouteChildrenProps,
 	RouteProps,
 } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../redux/store/configureStore';
+import { useAppSelector } from '../redux/store/configureStore';
 
 interface Props extends RouteProps {
 	component: ComponentType<RouteChildrenProps<any> | ComponentType<any>>;
