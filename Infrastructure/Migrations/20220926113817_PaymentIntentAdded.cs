@@ -3,10 +3,22 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infrastructure.Migrations
 {
-    public partial class Identity : Migration
+    public partial class PaymentIntentAdded : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AddColumn<string>(
+                name: "ClientSecret",
+                table: "Basket",
+                type: "TEXT",
+                nullable: true);
+
+            migrationBuilder.AddColumn<string>(
+                name: "PaymentIntentId",
+                table: "Basket",
+                type: "TEXT",
+                nullable: true);
+
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -155,12 +167,12 @@ namespace Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "ddb93770-a98e-47db-a1f1-860049456376", "bad27bb2-010f-4eef-99cf-71f307f8f5ca", "Student", "STUDENT" });
+                values: new object[] { "ccb01f94-597e-47a9-8cc9-868b05acb22f", "f1371661-20aa-47d0-9a8b-44b4633020b9", "Student", "STUDENT" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "49ff3361-4808-471c-8fe9-cfc6006227a7", "f4a0c858-e78c-450d-abde-f7f511402b36", "Instructor", "INSTRUCTOR" });
+                values: new object[] { "9f25fb9b-2ce1-41a9-a7e6-bf42d9febb7e", "445a3b19-9ef6-4fac-8dc9-e59871bd7332", "Instructor", "INSTRUCTOR" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -222,6 +234,14 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "ClientSecret",
+                table: "Basket");
+
+            migrationBuilder.DropColumn(
+                name: "PaymentIntentId",
+                table: "Basket");
         }
     }
 }

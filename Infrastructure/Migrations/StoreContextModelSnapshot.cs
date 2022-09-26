@@ -22,10 +22,10 @@ namespace Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("ClienSecret")
+                    b.Property<string>("ClientId")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("ClientId")
+                    b.Property<string>("ClientSecret")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PaymentIntentId")
@@ -257,15 +257,15 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f15e16e4-b0b4-457a-a638-918ebbb31065",
-                            ConcurrencyStamp = "6ce1032b-d19f-4ed1-b20f-37c9bbe19f3a",
+                            Id = "ccb01f94-597e-47a9-8cc9-868b05acb22f",
+                            ConcurrencyStamp = "f1371661-20aa-47d0-9a8b-44b4633020b9",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         },
                         new
                         {
-                            Id = "5fcba021-f6a3-4614-bd21-7ca7543293a2",
-                            ConcurrencyStamp = "0814f4a4-e700-496d-b4ad-62cf4b6995cf",
+                            Id = "9f25fb9b-2ce1-41a9-a7e6-bf42d9febb7e",
+                            ConcurrencyStamp = "445a3b19-9ef6-4fac-8dc9-e59871bd7332",
                             Name = "Instructor",
                             NormalizedName = "INSTRUCTOR"
                         });
