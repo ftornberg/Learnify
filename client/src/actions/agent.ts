@@ -51,6 +51,7 @@ const Baskets = {
 		requests.post<Basket>(`basket?courseId=${courseId}`, {}),
 	removeItem: (courseId: string) =>
 		requests.delete(`basket?courseId=${courseId}`),
+	clear: () => requests.delete('basket/clear'),
 };
 
 const Payments = {
