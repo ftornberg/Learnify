@@ -30,7 +30,7 @@ const Checkout = () => {
 						>
 							<Input
 								name="cardName"
-								placeholder="Must be the same as on your card"
+								placeholder="Must be the same name as printed on your card"
 								value={cardName}
 								onChange={handleChange}
 							/>
