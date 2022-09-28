@@ -44,18 +44,18 @@ function App() {
 			<Route exact path="/" component={Categories} />
 			<Switch>
 				<Route exact path="/" component={Homepage} />
+				<Route exact path="/login" component={LoginPage} />
 				<Route exact path="/category/:id" component={CategoryPage} />
 				<Route exact path="/course/:id" component={DescriptionPage} />
-				<Route exact path="/login" component={LoginPage} />
 				<Route exact path="/basket" component={BasketPage} />
 				<Route exact path="/detail" component={DetailPage} />
+				<PrivateRoute exact path="/checkout" component={CheckoutPage} />
+				<PrivateRoute exact path="/profile" component={Dashboard} />
 				<PrivateRoute
 					exact
 					path="/learn/:course/:lecture"
 					component={CoursePage}
 				/>
-				<PrivateRoute exact path="/profile" component={Dashboard} />
-				<PrivateRoute exact path="/checkout" component={CheckoutPage} />
 			</Switch>
 		</>
 	);
