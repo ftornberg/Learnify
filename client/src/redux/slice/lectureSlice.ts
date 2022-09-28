@@ -12,7 +12,8 @@ interface LectureState {
 	currentVideo: string;
 	lectureLoaded: boolean;
 }
-const lecturesAdapter = createEntityAdapter<Lecture>;
+
+const lecturesAdapter = createEntityAdapter<Lecture>();
 
 export const getLecturesAsync = createAsyncThunk<
 	Lecture | undefined,
@@ -29,7 +30,7 @@ export const setCurrentLectureAsync = createAsyncThunk<
 	void,
 	{ lectureId: number; courseId: string }
 >(
-	'lectures/setCurrentLectureAsync',
+	'lecture/setCurrentLecturesAsync',
 	async ({ lectureId, courseId }, thunkAPI) => {
 		try {
 			await agent.Lectures.setCurrentLecture({ lectureId, courseId });
@@ -61,7 +62,7 @@ export const lectureSlice = createSlice({
 		});
 		builder.addCase(getLecturesAsync.fulfilled, (state, action) => {
 			state.lectureLoaded = true;
-			state.lecture = action.payload;
+			state.lecture = action.payload!;
 			state.currentLecture = action.payload?.currentLecture!;
 		});
 		builder.addCase(getLecturesAsync.rejected, (state) => {
