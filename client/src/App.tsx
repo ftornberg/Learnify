@@ -5,8 +5,10 @@ import 'antd/dist/antd.min.css';
 import Homepage from './pages/Homepage';
 import Dashboard from './pages/Dashboard';
 import LoginPage from './pages/LoginPage';
+import Loading from './component/Loading';
 import DetailPage from './pages/DetailPage';
 import BasketPage from './pages/BasketPage';
+import CoursePage from './pages/CoursePage';
 import CheckoutPage from './pages/CheckoutPage';
 import Navigation from './component/Navigation';
 import Categories from './component/Categories';
@@ -16,7 +18,6 @@ import DescriptionPage from './pages/DescriptionPage';
 import { fetchCurrentUser } from './redux/slice/userSlice';
 import { fetchBasketAsync } from './redux/slice/basketSlice';
 import { useAppDispatch } from './redux/store/configureStore';
-import Loading from './component/Loading';
 
 function App() {
 	const [loading, setLoading] = useState(true);
@@ -48,6 +49,11 @@ function App() {
 				<Route exact path="/login" component={LoginPage} />
 				<Route exact path="/basket" component={BasketPage} />
 				<Route exact path="/detail" component={DetailPage} />
+				<PrivateRoute
+					exact
+					path="/learn/:course/:lecture"
+					component={CoursePage}
+				/>
 				<PrivateRoute exact path="/profile" component={Dashboard} />
 				<PrivateRoute exact path="/checkout" component={CheckoutPage} />
 			</Switch>

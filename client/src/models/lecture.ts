@@ -1,5 +1,3 @@
-import { ListenerPredicateGuardedActionType } from '@reduxjs/toolkit/dist/listenerMiddleware/types';
-
 export interface Lecture {
 	courseName: string;
 	sections: SectionDto[];
