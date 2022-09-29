@@ -44,9 +44,7 @@ namespace API.Controllers
     public async Task<ActionResult<CourseDto>> GetCourse(Guid id)
     {
       var spec = new CoursesWithCategoriesSpecification(id);
-
       var course = await _repository.GetEntityWithSpec(spec);
-
       return _mapper.Map<Course, CourseDto>(course);
     }
 
@@ -58,9 +56,22 @@ namespace API.Controllers
       course.Instructor = User.Identity.Name;
       _context.Courses.Add(course);
       var result = await _context.SaveChangesAsync() > 0;
+      if (result) return "Course created successfully";
+      return BadRequest(new ApiResponse(400, "There was a problem creating your course"));
+    }
 
-      if (result) return "Course Created Successfully";
-      return BadRequest(new ApiResponse(400, "problem Creating Course"));
+
+    [Authorize(Roles = "Instructor")]
+    [HttpPost("publish/{courseId}")]
+
+    public async Task<ActionResult<string>> PublishCourse(Guid courseId)
+    {
+      var course = await _context.Courses.FindAsync(courseId);
+      if (course == null) return NotFound(new ApiResponse(404));
+      course.Published = true;
+      var result = await _context.SaveChangesAsync() > 0;
+      if (result) return "Course published successfully";
+      return BadRequest(new ApiResponse(400, "There was a problem publishing your course"));
     }
   }
 }
