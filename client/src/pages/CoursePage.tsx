@@ -3,15 +3,14 @@ import { Link, RouteComponentProps, useHistory } from 'react-router-dom';
 import * as FaIcons from 'react-icons/fa';
 import Loading from '../component/Loading';
 import { LectureDto } from '../models/lecture';
-import { useAppDispatch, useAppSelector } from '../redux/store/configureStore';
 import {
 	getLecturesAsync,
 	setCurrentLecture,
 	setCurrentLectureAsync,
 	setCurrentVideo,
 } from '../redux/slice/lectureSlice';
+import { useAppDispatch, useAppSelector } from '../redux/store/configureStore';
 
-//Kan man använda useParams istället för match och RouteComponentProps? Och på så sätt slippa felet i App.tsx?
 const CoursePage = ({ match }: RouteComponentProps<any>) => {
 	const { lecture, lectureLoaded, currentLecture, currentVideo } =
 		useAppSelector((state) => state.lecture);
