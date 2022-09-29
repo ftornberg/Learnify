@@ -4,21 +4,23 @@ import './sass/main.scss';
 import 'antd/dist/antd.min.css';
 import Homepage from './pages/Homepage';
 import Dashboard from './pages/Dashboard';
-import LoginPage from './pages/LoginPage';
 import Loading from './component/Loading';
+import LoginPage from './pages/LoginPage';
 import DetailPage from './pages/DetailPage';
 import BasketPage from './pages/BasketPage';
 import CoursePage from './pages/CoursePage';
-import CheckoutPage from './pages/CheckoutPage';
 import Navigation from './component/Navigation';
 import Categories from './component/Categories';
+import CheckoutPage from './pages/CheckoutPage';
 import CategoryPage from './pages/CategoryPage';
+import CreateCourse from './pages/CreateCourse';
 import PrivateRoute from './component/PrivateRoute';
+import InstructorPage from './pages/InstructorPage';
 import DescriptionPage from './pages/DescriptionPage';
 import { fetchCurrentUser } from './redux/slice/userSlice';
 import { fetchBasketAsync } from './redux/slice/basketSlice';
 import { useAppDispatch } from './redux/store/configureStore';
-import InstructorPage from './pages/InstructorPage';
+import { getCategoriesAsync } from './redux/slice/categorySlice';
 
 function App() {
 	const [loading, setLoading] = useState(true);
@@ -28,6 +30,7 @@ function App() {
 		try {
 			await dispatch(fetchBasketAsync());
 			await dispatch(fetchCurrentUser());
+			await dispatch(getCategoriesAsync());
 		} catch (error: any) {
 			console.log(error);
 		}
@@ -58,6 +61,11 @@ function App() {
 				<PrivateRoute exact path="/profile" component={Dashboard} />
 				<PrivateRoute exact path="/checkout" component={CheckoutPage} />
 				<PrivateRoute exact path="/instructor" component={InstructorPage} />
+				<PrivateRoute
+					exact
+					path="/instructor/course"
+					component={CreateCourse}
+				/>
 			</Switch>
 		</>
 	);
