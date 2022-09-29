@@ -1,8 +1,7 @@
-import { Button, Card } from 'antd';
-import { match } from 'assert';
+import { Button, Card, notification } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
-import { courseSlice } from '../redux/slice/courseSlice';
+import { RouteComponentProps, useHistory } from 'react-router-dom';
+import agent from '../actions/agent';
 import { getUnpublishedCourses } from '../redux/slice/userSlice';
 import { useAppDispatch, useAppSelector } from '../redux/store/configureStore';
 
@@ -12,6 +11,7 @@ const SectionPage = ({ match }: RouteComponentProps<any>) => {
 
 	const { unpublishedCourses } = useAppSelector((state) => state.user);
 	const dispatch = useAppDispatch();
+	const history = useHistory();
 
 	const currentCourse = unpublishedCourses.find(
 		(course: any) => course.id === match.params.course
@@ -37,9 +37,15 @@ const SectionPage = ({ match }: RouteComponentProps<any>) => {
 				if (lectureForm[index].Title === '') {
 					allPrev[index].errors.Title = 'Title is required';
 				}
+
+				if (lectureForm[index].Url === '') {
+					allPrev[index].errors.Url = 'Url is required';
+				}
+
 				setLectureForm(allPrev);
 			});
 		}
+
 		return !someEmpty;
 	};
 
@@ -58,6 +64,38 @@ const SectionPage = ({ match }: RouteComponentProps<any>) => {
 
 		if (prevIsValid()) {
 			setLectureForm((prev: any) => [...prev, inputState]);
+		}
+	};
+
+	const publishCourse = async () => {
+		try {
+			const response = await agent.Courses.publish(match.params.course);
+
+			notification.success({
+				message: response,
+			});
+			history.push('/profile');
+		} catch (error: any) {
+			console.log(error);
+		}
+	};
+
+	const publishSection = async () => {
+		try {
+			const response = await agent.Lectures.create({
+				courseId: match.params.course,
+				sectionName: sectionName,
+				lectures: lectureForm,
+			});
+
+			notification.success({
+				message: response,
+			});
+
+			setSectionName('');
+			setLectureForm([]);
+		} catch (error: any) {
+			console.log(error);
 		}
 	};
 
@@ -93,10 +131,10 @@ const SectionPage = ({ match }: RouteComponentProps<any>) => {
 
 	return (
 		<div className="section-page">
-			<h1>Create Sections {currentCourse?.title}</h1>
+			<h1>Create Sections: {currentCourse?.title}</h1>
 			<Card>
 				<input
-					className="input-seection"
+					className="input-section"
 					placeholder="Section Name"
 					value={sectionName}
 					required={true}
@@ -104,7 +142,7 @@ const SectionPage = ({ match }: RouteComponentProps<any>) => {
 				/>
 				{lectureForm.map((item: any, index: number) => (
 					<div key={`item-${index}`} className="section-page__lectures">
-						<div className="section-page__lecture__item">
+						<div className="section-page__lectures__item">
 							<input
 								name="Title"
 								className="input-lecture"
@@ -117,7 +155,7 @@ const SectionPage = ({ match }: RouteComponentProps<any>) => {
 								<div className="invalid-feedback">{item.errors.Title}</div>
 							)}
 						</div>
-						<div className="section-page__lecture__item">
+						<div className="section-page__lectures__item">
 							<input
 								name="Url"
 								className="input-lecture"
@@ -134,12 +172,23 @@ const SectionPage = ({ match }: RouteComponentProps<any>) => {
 							type="primary"
 							danger
 							onClick={(e) => handleRemoveField(e, index)}
-						>
-							Temp
-						</Button>
+						></Button>
 					</div>
 				))}
 			</Card>
+			<Button type="dashed" onClick={handleAddLink}>
+				Add Lecture
+			</Button>
+			<Button
+				className="publish-section"
+				type="primary"
+				onClick={publishSection}
+			>
+				Publish Section
+			</Button>
+			<Button className="publish-course" type="primary" onClick={publishCourse}>
+				Publish Course
+			</Button>
 		</div>
 	);
 };
