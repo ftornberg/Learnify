@@ -1,14 +1,9 @@
-import { Component, ComponentType } from 'react';
-import {
-	Redirect,
-	Route,
-	RouteChildrenProps,
-	RouteProps,
-} from 'react-router-dom';
+import { ComponentType } from 'react';
+import { Redirect, Route, RouteProps } from 'react-router-dom';
 import { useAppSelector } from '../redux/store/configureStore';
 
 interface Props extends RouteProps {
-	component: ComponentType<RouteChildrenProps<any> | ComponentType<any>>;
+	component: ComponentType<RouteProps<any>> | ComponentType<any>;
 }
 
 const PrivateRoute = ({ component: Component, ...rest }: Props) => {
@@ -21,11 +16,7 @@ const PrivateRoute = ({ component: Component, ...rest }: Props) => {
 				user ? (
 					<Component {...props} />
 				) : (
-					<Redirect
-						to={{
-							pathname: '/login',
-						}}
-					/>
+					<Redirect to={{ pathname: '/login' }} />
 				)
 			}
 		/>

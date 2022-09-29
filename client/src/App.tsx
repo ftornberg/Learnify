@@ -54,8 +54,8 @@ function App() {
 					path="/learn/:course/:lecture"
 					component={CoursePage}
 				/>
-				<PrivateRoute exact path="/checkout" component={CheckoutPage} />
 				<PrivateRoute exact path="/profile" component={Dashboard} />
+				<PrivateRoute exact path="/checkout" component={CheckoutPage} />
 			</Switch>
 		</>
 	);
