@@ -9,6 +9,7 @@ import LoginPage from './pages/LoginPage';
 import DetailPage from './pages/DetailPage';
 import BasketPage from './pages/BasketPage';
 import CoursePage from './pages/CoursePage';
+import SectionPage from './pages/SectionPage';
 import Navigation from './component/Navigation';
 import Categories from './component/Categories';
 import CheckoutPage from './pages/CheckoutPage';
@@ -66,6 +67,7 @@ function App() {
 					path="/instructor/course"
 					component={CreateCourse}
 				/>
+				<PrivateRoute exact path="/:course/lectures" component={SectionPage} />
 			</Switch>
 		</>
 	);

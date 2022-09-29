@@ -10,11 +10,7 @@ import { ChangeEvent, SyntheticEvent, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import agent from '../actions/agent';
 import { removeBasket } from '../redux/slice/basketSlice';
-import {
-	store,
-	useAppDispatch,
-	useAppSelector,
-} from '../redux/store/configureStore';
+import { useAppDispatch, useAppSelector } from '../redux/store/configureStore';
 import CheckoutSummary from './CheckoutSummary';
 
 const Checkout = () => {
