@@ -14,8 +14,9 @@ namespace Entity
     public string Description { get; set; }
     public float Price { get; set; }
     public string Instructor { get; set; }
-    public string Image { get; set; }
+    public string Image { get; set; } = "https://learnify-assets.s3.amazonaws.com/Images/learnify.png";
     public decimal Rating { get; set; }
+    public bool Published { get; set; } = false;
     public ICollection<Requirement> Requirements { get; set; } = new List<Requirement>();
     public ICollection<Learning> Learnings { get; set; } = new List<Learning>();
     public int CategoryId { get; set; }
