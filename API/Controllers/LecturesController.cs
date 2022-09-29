@@ -28,6 +28,7 @@ namespace API.Controllers
     }
 
     [Authorize]
+
     [HttpGet("{courseId}")]
 
     public async Task<ActionResult<UserLectureDto>> GetLectures(Guid courseId)
@@ -35,30 +36,37 @@ namespace API.Controllers
       var course = await _context.Courses.FindAsync(courseId);
 
       var user = await _userManager.FindByNameAsync(User.Identity.Name);
+
       var sections = await _context.Sections.Where(x => x.CourseId == course.Id).Include(c => c.Lectures).ToListAsync();
+
       var userCourse = _context.UserCourses.Where(x => x.User == user).Where(x => x.Course == course).First();
+
       return new UserLectureDto
       {
         CourseName = course.Title,
         Sections = _mapper.Map<List<Section>, List<SectionDto>>(sections),
         CurrentLecture = userCourse.CurrentLecture
       };
+
     }
 
     [Authorize]
     [HttpPut("setCurrentLecture")]
 
-    public async Task<ActionResult> UpdateCurrentLecture([FromBody] UpdateLectureDto updateLectureDto)
+    public async Task<ActionResult> UpdateCurrentLecture([FromBody] UpdateLectureDto updateLecture)
     {
+
       var user = await _userManager.FindByNameAsync(User.Identity.Name);
-      var userCourse = _context.UserCourses.Where(x => x.User == user).Where(x => x.CourseId == updateLectureDto.CourseId).First();
-      userCourse.CurrentLecture = updateLectureDto.LectureId;
+
+      var userCourse = _context.UserCourses.Where(x => x.User == user).Where(x => x.CourseId == updateLecture.CourseId).First();
+
+      userCourse.CurrentLecture = updateLecture.LectureId;
 
       var result = await _context.SaveChangesAsync() > 0;
 
       if (result) return Ok();
 
-      return BadRequest(new ApiResponse(400, "Problem updating the lecture"));
+      return BadRequest(new ApiResponse(400, "Problem updating current lecture"));
 
     }
   }

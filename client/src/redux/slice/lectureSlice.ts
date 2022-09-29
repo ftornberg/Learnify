@@ -21,8 +21,8 @@ export const getLecturesAsync = createAsyncThunk<
 >('lecture/getLecturesAsync', async ({ courseId }, thunkAPI) => {
 	try {
 		return await agent.Lectures.getLectures(courseId);
-	} catch (error: any) {
-		return thunkAPI.rejectWithValue({ error: error });
+	} catch (err: any) {
+		return thunkAPI.rejectWithValue({ error: err });
 	}
 });
 
@@ -34,8 +34,8 @@ export const setCurrentLectureAsync = createAsyncThunk<
 	async ({ lectureId, courseId }, thunkAPI) => {
 		try {
 			await agent.Lectures.setCurrentLecture({ lectureId, courseId });
-		} catch (error: any) {
-			return thunkAPI.rejectWithValue({ error: error });
+		} catch (err: any) {
+			return thunkAPI.rejectWithValue({ error: err });
 		}
 	}
 );
@@ -65,7 +65,7 @@ export const lectureSlice = createSlice({
 			state.lecture = action.payload!;
 			state.currentLecture = action.payload?.currentLecture!;
 		});
-		builder.addCase(getLecturesAsync.rejected, (state) => {
+		builder.addCase(getLecturesAsync.rejected, (state, action) => {
 			state.lectureLoaded = true;
 		});
 	},

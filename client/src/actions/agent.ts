@@ -27,24 +27,24 @@ const requests = {
 	post: <T>(url: string, body: {}) =>
 		axios.post<T>(url, body).then(responseBody),
 	put: <T>(url: string, body: {}) => axios.put<T>(url, body).then(responseBody),
-	delete: <T>(url: string) => axios.delete<T>(url).then(responseBody),
+	del: <T>(url: string) => axios.delete<T>(url).then(responseBody),
 };
 
 const Users = {
 	login: (values: Login) => requests.post<User>('users/login', values),
 	register: (values: Register) => requests.post<User>('users/register', values),
 	addCourse: () => requests.post('users/purchaseCourses', {}),
-	currentUser: () => requests.get<User>('users/currentuser'),
+	currentUser: () => requests.get<User>('users/currentUser'),
 };
 
 const Courses = {
 	list: (params?: URLSearchParams) =>
-		requests.get<PaginatedCourse>('courses', params),
+		requests.get<PaginatedCourse>('/courses', params),
 	getById: (id: string) => requests.get<Course>(`/courses/${id}`),
 };
 
 const Categories = {
-	list: () => requests.get<Category[]>('categories'),
+	list: () => requests.get<Category[]>('/categories'),
 	getCategory: (id: number) => requests.get<Category>(`/categories/${id}`),
 };
 
@@ -52,9 +52,8 @@ const Baskets = {
 	get: () => requests.get<Basket>('basket'),
 	addItem: (courseId: string) =>
 		requests.post<Basket>(`basket?courseId=${courseId}`, {}),
-	removeItem: (courseId: string) =>
-		requests.delete(`basket?courseId=${courseId}`),
-	clear: () => requests.delete('basket/clear'),
+	removeItem: (courseId: string) => requests.del(`basket?courseId=${courseId}`),
+	clear: () => requests.del('basket/clear'),
 };
 
 const Payments = {

@@ -33,6 +33,7 @@ const ShowCourses = ({ course }: Props) => {
 		window.addEventListener('resize', checkWidth);
 		return () => window.addEventListener('resize', checkWidth);
 	}, []);
+
 	useEffect(() => {
 		checkWidth();
 	}, []);
@@ -58,16 +59,14 @@ const ShowCourses = ({ course }: Props) => {
 					<Link to={`/course/${course.id}`}>
 						<div className="course__title">{course.title}</div>
 					</Link>
-
 					<div className="course__instructor">{course.instructor}</div>
 					<div className="course__rating">
 						{course.rating}
 						<span>{showStars(course.rating)}</span>
 					</div>
-
 					<div className="course__bottom">
 						<div className="course__bottom__price">{course.price}</div>
-						{userCourses?.find((item: Course) => item.id === course.id) !=
+						{userCourses?.find((item: Course) => item.id === course.id) !==
 						undefined ? (
 							<Link to={`/learn/${course.id}/${currentLecture}`}>
 								<div className="course__bottom__cart">Go to Course</div>
@@ -75,7 +74,7 @@ const ShowCourses = ({ course }: Props) => {
 						) : basket?.items.find((item) => item.courseId === course.id) !==
 						  undefined ? (
 							<Link to="/basket">
-								<div className="course__bottom__cart">Go to cart</div>
+								<div className="course__bottom__cart">Go to Cart</div>
 							</Link>
 						) : (
 							<div
@@ -84,7 +83,7 @@ const ShowCourses = ({ course }: Props) => {
 								}
 								className="course__bottom__cart"
 							>
-								Add to cart
+								Add to Cart
 							</div>
 						)}
 					</div>
