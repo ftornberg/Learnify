@@ -1,22 +1,32 @@
-import { Row } from 'antd';
+import { Button, Row } from 'antd';
 import { useEffect } from 'react';
 import ShowCourses from '../component/ShowCourses';
 import { Course } from '../models/course';
-import { fetchCurrentUser } from '../redux/slice/userSlice';
+import { addRole, fetchCurrentUser } from '../redux/slice/userSlice';
 import { useAppDispatch, useAppSelector } from '../redux/store/configureStore';
 
 const Dashboard = () => {
+	const { userCourses, user } = useAppSelector((state) => state.user);
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
 		dispatch(fetchCurrentUser());
 	}, [dispatch]);
 
-	const { userCourses } = useAppSelector((state) => state.user);
+	const becomeInstructor = async () => {
+		await dispatch(addRole());
+		dispatch(fetchCurrentUser());
+	};
+
 	return (
 		<div className="dashboard">
 			<div className="dashboard__header">
 				<h1>My Courses</h1>
+				{!user?.roles?.includes('Instructor') && (
+					<Button onClick={becomeInstructor} type="primary">
+						Become an Instructor
+					</Button>
+				)}
 			</div>
 			<div className="dashboard__courses">
 				<Row gutter={[48, 32]}>
