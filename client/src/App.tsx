@@ -18,6 +18,7 @@ import DescriptionPage from './pages/DescriptionPage';
 import { fetchCurrentUser } from './redux/slice/userSlice';
 import { fetchBasketAsync } from './redux/slice/basketSlice';
 import { useAppDispatch } from './redux/store/configureStore';
+import InstructorPage from './pages/InstructorPage';
 
 function App() {
 	const [loading, setLoading] = useState(true);
@@ -56,6 +57,7 @@ function App() {
 				/>
 				<PrivateRoute exact path="/profile" component={Dashboard} />
 				<PrivateRoute exact path="/checkout" component={CheckoutPage} />
+				<PrivateRoute exact path="/instructor" component={InstructorPage} />
 			</Switch>
 		</>
 	);
