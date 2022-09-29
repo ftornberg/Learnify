@@ -111,7 +111,7 @@ namespace API.Controllers
     }
 
     [Authorize]
-    [HttpGet("currentuser")]
+    [HttpGet("currentUser")]
 
     public async Task<ActionResult<UserDto>> GetCurrentUser()
     {
@@ -126,6 +126,16 @@ namespace API.Controllers
         Basket = _mapper.Map<Basket, BasketDto>(basket),
         Courses = courses.Where(x => x.UserId == user.Id).Select(u => u.Course).ToList(),
       };
+    }
+
+    [Authorize]
+    [HttpPost("addRole")]
+
+    public async Task<ActionResult> AddRole()
+    {
+      var user = await _userManager.FindByNameAsync(User.Identity.Name);
+      await _userManager.AddToRoleAsync(user, "Instructor");
+      return Ok();
     }
 
     private async Task<Basket> ExtractBasket(string clientId)
