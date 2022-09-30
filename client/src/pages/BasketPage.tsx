@@ -70,7 +70,7 @@ const BasketPage = () => {
 					</div>
 					{total! > 0 && (
 						<div className="basket-page__body__summary">
-							<h2>Total:</h2>
+							<h2 className="total">Total:</h2>
 							<div className="basket-page__body__summary__total">
 								$ {total ? total : 0}
 							</div>

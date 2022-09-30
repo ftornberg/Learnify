@@ -7,24 +7,24 @@ $bp-large: 62.5em; // 1000px
 $bp-medium: 50em; // 800px
 $bp-small: 37.5em; // 600px
 
-// // Colors
-// $color-grey-light-1: #f9f7f6;
-// $color-grey-light-2: #aaa;
-// $color-grey-dark-1: #54483a;
-// $color-grey-dark-2: #6d5d4b;
+// Colors
+$color-grey-light-1: #f9f7f6;
+$color-grey-light-2: #aaa;
+$color-grey-dark-1: #54483a;
+$color-grey-dark-2: #6d5d4b;
 
 //Own colors
-$my-own-colors-main-brand: #DF914F;
-$my-own-colors-light-accent: #96BCD4;
-$my-own-colors-dark-accent: #AB8079;
-$my-own-colors-light-shade: #F6F6F5;
-$my-own-colors-dark-shade: #40647C;
+$my-own-colors-main-brand: #7F8B94;
+$my-own-colors-light-accent: #CFA465;
+$my-own-colors-dark-accent: #7A7478;
+$my-own-colors-light-shade: #F0EEEB;
+$my-own-colors-dark-shade: #47333E;
 
-// Colors
-$color-grey-light-1: $my-own-colors-main-brand;
-$color-grey-light-2: $my-own-colors-dark-accent;
-$color-grey-dark-1: $my-own-colors-light-shade;
-$color-grey-dark-2: $my-own-colors-light-accent;
+// // Colors
+// $color-grey-light-1: $my-own-colors-main-brand;
+// $color-grey-light-2: $my-own-colors-dark-accent;
+// $color-grey-dark-1: $my-own-colors-light-shade;
+// $color-grey-dark-2: $my-own-colors-light-accent;
 
 // COLOR VARIABLES
 $color-primary: #261e7d;
@@ -47,4 +47,5 @@ html {
 
 body {
     font-family: $font-primary;
+
 }

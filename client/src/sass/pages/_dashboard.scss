@@ -3,19 +3,21 @@
     flex-direction: column;
   
     &__header {
-      background: $color-primary;
-      height: 100px;
+      background: $my-own-colors-light-shade;
+      height: 60px;
       display: flex;
       align-items: center;
       padding: 30px;
       justify-content: space-between;
+      box-shadow: 0 0.5em 0.8em 0 rgba(0, 0, 0, 0.37);
+      border-radius: 0 0 2.5rem 2.5rem;
 
       @media only screen and (max-width: $bp-medium) {
         flex-direction: column;
       }
   
       & h1 {
-        color: white;
+        color: $my-own-colors-dark-accent;
       }
     }
   

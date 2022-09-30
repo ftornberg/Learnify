@@ -10,6 +10,7 @@
     & h1 {
       font-weight: bold;
       margin-left: 10px;
+      color: $my-own-colors-dark-shade;
     }
   
     @media only screen and (max-width: $bp-medium) {
@@ -17,10 +18,12 @@
     }
   
     &__form {
+
       display: flex;
       flex-direction: column;
       flex: 0 0 60%;
       padding: 20px;
+      border-radius: 1rem;
     }
   
     &__summary {
@@ -28,20 +31,24 @@
       flex-direction: column;
       flex: 1;
       padding: 20px;
+      padding-top: 48px;
       margin-top: 30px;
+      border-radius: 1rem;
   
       & h2 {
         font-weight: bold;
       }
   
       &__total {
+        color: $my-own-colors-dark-shade;
         display: flex;
         justify-content: space-between;
         font-weight: bold;
       }
   
       .ant-btn-primary {
-        background-color: $color-primary;
+        background-color: $my-own-colors-main-brand;
+        color: $my-own-colors-light-shade;
         width: 100%;
       }
     }

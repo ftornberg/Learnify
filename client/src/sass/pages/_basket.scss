@@ -27,12 +27,34 @@
       }
   
       &__summary {
-        color: hotpink;
-        background-color: orange;
+        color: $my-own-colors-light-shade;
+        background: linear-gradient(128deg, rgba(255,0,228,1) 0%, rgba(9,9,121,1) 35%, rgba(255,0,0,1) 100%);
+        background-size: 300% 300%;
+        border-radius: 1em;
         display: flex;
         flex-direction: column;
         padding: 0 20px;
         flex: 0 0 22%;
+        animation: gradient 15s ease infinite;
+          
+        @keyframes gradient {
+          0% {
+              background-position: 0% 50%;
+          }
+      
+          50% {
+              background-position: 100% 50%;
+          }
+      
+          100% {
+              background-position: 0% 50%;
+          }
+        }
+
+        .total{
+          color: $my-own-colors-light-shade;
+        }
+
   
         @media only screen and (max-width: $bp-medium) {
           order: -1;
@@ -41,13 +63,16 @@
         }
   
         &__total {
+          color: $my-own-colors-light-shade;
           font-size: 3em;
           font-weight: bold;
         }
   
         &__checkout {
           color: white;
-          background-color: $color-primary;
+          background-color: $my-own-colors-main-brand;
+          border-color: white;
+          border-radius: 1rem;
           padding: 10px 40px;
           margin-top: 10px;
           display: flex;
