@@ -82,3 +82,33 @@
     display: flex;
     justify-content: center;
   }
+
+  .card{
+    padding-top: 1em;
+    padding-inline: .5em;
+    border-radius: 1em;
+    opacity: 85%;
+
+    &:hover{
+      opacity: 100%;
+      transform: scale(1.01);
+      box-shadow: 0 1.1em 0.8em 0 rgba(0, 0, 0, 0.37);
+      transition: all 350ms linear;
+      animation: shake 350ms linear;
+      animation-delay: 100ms;
+    }
+    .img{
+      max-height: 13rem;
+    }
+  }
+  @keyframes shake {
+    25% {
+      transform: rotate(1deg);  
+    }
+    50% {
+      transform: rotate(-1deg);
+    }
+    75% {
+      transform: rotate(1deg);
+    }
+  }
