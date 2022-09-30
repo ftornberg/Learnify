@@ -53,6 +53,7 @@ const ShowCourses = ({ course }: Props) => {
 		<>
 			<Col className="gutter-row" span={spanVal}>
 				<Card
+					className="card"
 					hoverable
 					cover={<img width="100%" alt="course-cover" src={course.image} />}
 				>
