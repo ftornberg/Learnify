@@ -115,12 +115,7 @@ const DescriptionPage = () => {
 				<div className="description-page__sidebar">
 					<div className="description-page__sidebar__box">
 						<div className="description-page__sidebar__box__video">
-							<img
-								alt="__image"
-								src={course?.image}
-								width="100%"
-								height="100%"
-							/>
+							<img className="__image" src={course?.image} width="100%" />
 						</div>
 
 						<div className="description-page__sidebar__box__price">
@@ -180,9 +175,6 @@ const DescriptionPage = () => {
 									Add to cart
 								</div>
 							)}
-							<div className="description-page__sidebar__box__button--text">
-								Book now
-							</div>
 						</div>
 					</div>
 

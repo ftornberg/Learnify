@@ -66,6 +66,7 @@ const BasketPage = () => {
 							columns={columns}
 							dataSource={basket?.items}
 							rowKey="courseId"
+							pagination={false}
 						/>
 					</div>
 					{total! > 0 && (

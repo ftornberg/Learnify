@@ -12,11 +12,12 @@ import {
 } from '../redux/slice/courseSlice';
 import { categoriesSelector } from '../redux/slice/categorySlice';
 import { Category } from '../models/category';
+import { FaCaretDown } from 'react-icons/fa';
 
 const sortOptions = [
-	{ value: 'title', label: 'Alphabetical' },
-	{ value: 'priceDescending', label: 'Price - High to low' },
-	{ value: 'priceAscending', label: 'Price - Low to high' },
+	{ value: 'title', label: 'A - Z' },
+	{ value: 'priceDescending', label: 'Price: H > L' },
+	{ value: 'priceAscending', label: 'Price: L > H' },
 ];
 
 const Homepage = () => {
@@ -53,7 +54,7 @@ const Homepage = () => {
 				<div>
 					<Row gutter={[24, 32]}>
 						<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-							<Col span={11}>
+							<Col span={9}>
 								<Card title="Sorting Options">
 									<Radio.Group
 										options={sortOptions}
@@ -64,7 +65,7 @@ const Homepage = () => {
 									/>
 								</Card>
 							</Col>
-							<Col span={13}>
+							<Col span={15}>
 								<Card title="Choose Category">
 									<Radio.Group
 										options={getCategories()}
