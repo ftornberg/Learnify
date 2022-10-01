@@ -1,11 +1,18 @@
+.coursecontainer{
+  display: flex;
+  align-self: center;
+}
+
 .course {
     display: flex;
+    justify-content: center;
     flex-direction: column;
+    flex-wrap: wrap;
     padding: 50px 20px;
     max-width: 1340px;
     margin: 10px auto 0;
     font-family: $font-primary;
-  
+    
     &__header {
       & h1 {
         font-size: 40px;
@@ -73,6 +80,13 @@
         padding: 10px 15px;
         border-radius: 5px;
         font-size: 1rem;
+
+        &:hover{
+          opacity: 100%;
+          transform: scale(1.01);
+          box-shadow: 0 1.1em 0.8em 0 rgba(0, 0, 0, 0.37);
+          transition: all 350ms linear;
+        }
       }
     }
   }
@@ -81,4 +95,37 @@
     margin-top: 50px;
     display: flex;
     justify-content: center;
+  }
+
+
+  .card{
+    padding-block: 1em;
+    padding-inline: .5em;
+    border-radius: 1em;
+    opacity: 85%;
+    max-width: 18rem;
+
+    &:hover{
+      opacity: 100%;
+      transform: scale(1.01);
+      box-shadow: 0 1.1em 0.8em 0 rgba(0, 0, 0, 0.37);
+      transition: all 350ms linear;
+      animation: shake 350ms linear;
+      animation-delay: 100ms;
+    }
+  
+  .img{
+    max-height: 13rem;
+  }
+  }
+  @keyframes shake {
+    25% {
+      transform: rotate(1deg);  
+    }
+    50% {
+      transform: rotate(-1deg);
+    }
+    75% {
+      transform: rotate(1deg);
+    }
   }

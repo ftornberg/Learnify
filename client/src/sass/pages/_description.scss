@@ -18,9 +18,9 @@
     &__header {
       display: flex;
       flex-direction: column;
-      border-bottom: $border;
+      border-radius: 1rem;
       padding: 3rem;
-      background-color: $color-secondary-dark;
+      background-color: $my-own-colors-main-brand;
       color: white;
   
       &__details {
@@ -38,7 +38,7 @@
           &--name {
             font-size: 1.4rem;
   
-            color: $color-secondary-light;
+            color: $my-own-colors-light-accent;
             font-weight: bold;
             display: block;
           }
@@ -48,7 +48,7 @@
           &--date {
             font-size: 1.4rem;
   
-            color: $color-secondary-light;
+            color: $my-own-colors-light-accent;
             font-weight: bold;
             display: block;
           }
@@ -59,7 +59,7 @@
           &--name {
             font-size: 1.6rem;
   
-            color: $color-secondary-light;
+            color: $my-own-colors-light-accent;
             font-weight: bold;
             display: block;
           }
@@ -80,7 +80,7 @@
         &--name {
           margin-top: 5px;
           display: block;
-          color: $color-secondary-dark;
+          color: $my-own-colors-dark-shade;
         }
       }
   
@@ -88,7 +88,7 @@
         &--count {
           margin-top: 5px;
           display: block;
-          color: $color-secondary-dark;
+          color: $my-own-colors-dark-shade;
         }
       }
   
@@ -96,7 +96,7 @@
         &--name {
           margin-top: 5px;
           display: block;
-          color: $color-secondary-dark;
+          color: $my-own-colors-dark-shade
         }
       }
     }
@@ -105,7 +105,7 @@
   
       &__title {
         font-size: 1.6rem;
-        color: $color-secondary-dark;
+        color: $my-own-colors-dark-shade;
         margin-bottom: 10px;
         font-weight: bold;
       }
@@ -124,7 +124,7 @@
   
       &__title {
         font-size: 1.6rem;
-        color: $color-secondary-dark;
+        color: $my-own-colors-dark-shade;
         margin-bottom: 10px;
         font-weight: bold;
       }
@@ -159,12 +159,17 @@
         flex-direction: column;
         &__video {
           margin-bottom: 20px;
-  
+          flex: 1;
           height: 160px;
           position: relative;
   
           @media only screen and (max-width: $bp-medium) {
             height: 300px;
+          }
+          
+          &__image{
+            position: absolute;
+            // flex:1,
           }
   
           &__play-button {
@@ -261,6 +266,7 @@
             justify-content: center;
             color: #fff;
             padding: 1.6rem;
+            border-radius: 1rem;
             margin: 5px 0;
             font-weight: bold;
             cursor: pointer;
@@ -276,9 +282,9 @@
         
             &:hover {
               background-image: linear-gradient(
-                to left,
-                ($color-secondary-light),
-                ($color-secondary-dark)
+                to right,
+                ($color-secondary-dark),
+                ($color-secondary-light)
               );
             }
           }
